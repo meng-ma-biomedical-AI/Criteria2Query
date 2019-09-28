@@ -15,6 +15,7 @@ import edu.columbia.dbmi.ohdsims.pojo.GlobalSetting;
 import edu.columbia.dbmi.ohdsims.pojo.Paragraph;
 import edu.columbia.dbmi.ohdsims.pojo.Sentence;
 import edu.columbia.dbmi.ohdsims.pojo.Term;
+import edu.columbia.dbmi.ohdsims.pojo.Triple;
 import edu.columbia.dbmi.ohdsims.service.IInformationExtractionService;
 import edu.columbia.dbmi.ohdsims.tool.ConceptMapping;
 import edu.columbia.dbmi.ohdsims.tool.CoreNLP;
@@ -31,7 +32,6 @@ import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.util.CoreMap;
-import edu.stanford.nlp.util.Triple;
 import net.sf.json.JSONObject;
 
 
@@ -132,6 +132,7 @@ public class InformationExtractionServiceImpl implements IInformationExtractionS
 				List<Term> primary_entities = new ArrayList<Term>();
 				List<Term> attributes = new ArrayList<Term>();
 				// Separate primary terms and attributes
+				// re-execute after session update.
 				for (Term t : terms) {
 					if (Arrays.asList(GlobalSetting.primaryEntities).contains(t.getCategorey())) {
 						// Negation detection

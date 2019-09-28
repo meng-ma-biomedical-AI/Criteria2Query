@@ -44,10 +44,11 @@ public class WebUtil {
 	public static final String ADD_URL = "http://api.ohdsi.org/WebAPI/cdmresults/1PCT/conceptRecordCount";
 	public static void main(String[] args){
 		try {
+			WebUtil.getCTByNctid("NCT01640873");
 //			String query="diabetes%20mellitus";
 //			//query = URLEncoder.encode(query, "utf-8");
 //			doGet("http://api.ohdsi.org/WebAPI/vocabulary/1PCT/search/"+query,null);
-			String query2="diabetes mellitus";
+//			String query2="diabetes mellitus";
 			
 //			Concept concept=ATLASUtil.getMaxCountConcept(query2, "Condition");
 //			System.out.println("CONCEPT_NAME="+concept.getCONCEPT_NAME());
@@ -137,6 +138,7 @@ public class WebUtil {
 	    return null;
 
 	}
+	
 
 	public static String[] parse(String protocolXML) {
 

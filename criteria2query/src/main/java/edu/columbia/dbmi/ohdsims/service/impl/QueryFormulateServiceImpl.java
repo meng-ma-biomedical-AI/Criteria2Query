@@ -21,12 +21,12 @@ import edu.columbia.dbmi.ohdsims.pojo.Paragraph;
 import edu.columbia.dbmi.ohdsims.pojo.Sentence;
 import edu.columbia.dbmi.ohdsims.pojo.TemporalConstraint;
 import edu.columbia.dbmi.ohdsims.pojo.Term;
+import edu.columbia.dbmi.ohdsims.pojo.Triple;
 import edu.columbia.dbmi.ohdsims.service.IQueryFormulateService;
 import edu.columbia.dbmi.ohdsims.tool.OHDSIApis;
 import edu.columbia.dbmi.ohdsims.util.HttpUtil;
 import edu.columbia.dbmi.ohdsims.util.NumericConvert;
 import edu.columbia.dbmi.ohdsims.util.TemporalNormalize;
-import edu.stanford.nlp.util.Triple;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -705,7 +705,7 @@ public class QueryFormulateServiceImpl implements IQueryFormulateService {
 		// TODO Auto-generated method stub
 		
 		JSONObject cohortdef=new JSONObject();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH_mm");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); // avoid same-minute-submit bug.
 		String date = df.format(new Date());
 		
 		cohortdef.put("name", cohortname+date);

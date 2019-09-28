@@ -21,11 +21,11 @@ import edu.columbia.dbmi.ohdsims.pojo.GlobalSetting;
 import edu.columbia.dbmi.ohdsims.pojo.Paragraph;
 import edu.columbia.dbmi.ohdsims.pojo.Sentence;
 import edu.columbia.dbmi.ohdsims.pojo.Term;
+import edu.columbia.dbmi.ohdsims.pojo.Triple;
 import edu.columbia.dbmi.ohdsims.service.IConceptMappingService;
 import edu.columbia.dbmi.ohdsims.tool.ConceptMapping;
 import edu.columbia.dbmi.ohdsims.tool.OHDSIApis;
 import edu.columbia.dbmi.ohdsims.util.HttpUtil;
-import edu.stanford.nlp.util.Triple;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 

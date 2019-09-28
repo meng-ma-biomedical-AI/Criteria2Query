@@ -13,7 +13,7 @@ import edu.columbia.dbmi.ohdsims.pojo.Paragraph;
 import edu.columbia.dbmi.ohdsims.pojo.Sentence;
 import edu.columbia.dbmi.ohdsims.pojo.TemporalConstraint;
 import edu.columbia.dbmi.ohdsims.pojo.Term;
-import edu.stanford.nlp.util.Triple;
+import edu.columbia.dbmi.ohdsims.pojo.Triple;
 
 public class IOUtil {
 	public static String doc2Str(Document doc) {

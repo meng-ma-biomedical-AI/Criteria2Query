@@ -6,7 +6,7 @@ import java.util.Map;
 import edu.columbia.dbmi.ohdsims.pojo.ConceptSet;
 import edu.columbia.dbmi.ohdsims.pojo.Document;
 import edu.columbia.dbmi.ohdsims.pojo.Term;
-import edu.stanford.nlp.util.Triple;
+import edu.columbia.dbmi.ohdsims.pojo.Triple;
 
 
 public interface IConceptMappingService {

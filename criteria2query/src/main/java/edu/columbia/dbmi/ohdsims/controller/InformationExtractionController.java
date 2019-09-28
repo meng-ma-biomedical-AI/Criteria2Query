@@ -91,6 +91,51 @@ public class InformationExtractionController {
 		map.put("exclude", display_exclusion_criteria);
 		return map;
 	}
+	
+	/**
+	 * parse and return without html display.
+	 * Cong Liu 
+	 * 
+	 * */
+	@RequestMapping("/parse2")
+	@ResponseBody
+	public Map<String, Object> parseAllCriteria2(HttpSession httpSession, HttpServletRequest request,String initialevent, String inc, String exc,boolean abb, boolean recon,String obstart,String obend,String daysbefore,String daysafter,String limitto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("recon="+recon);
+		Document doc = this.ieService.translateByDoc(initialevent, inc, exc);
+		doc = this.ieService.patchIEResults(doc);
+		if(recon){
+			doc=this.ieService.reconIEResults(doc);
+		}
+		ObservationConstraint oc=new ObservationConstraint();
+		oc.setDaysAfter(Integer.valueOf(daysafter));
+		oc.setDaysBefore(Integer.valueOf(daysbefore));
+		oc.setLimitTo(limitto);
+		if(obstart.length()>0){
+			oc.setStartDate(obstart);
+		}else{
+			oc.setStartDate(null);
+		}
+		if(obend.length()>0){
+			oc.setEndDate(obend);
+		}else{
+			oc.setEndDate(null);
+		}
+		doc.setInitial_event_constraint(oc);
+		List<DisplayCriterion> display_initial_event=this.ieService.displayDoc(doc.getInitial_event());
+		List<DisplayCriterion> display_inclusion_criteria=this.ieService.displayDoc(doc.getInclusion_criteria());
+		List<DisplayCriterion> display_exclusion_criteria=this.ieService.displayDoc(doc.getExclusion_criteria());
+		if(abb==true){
+			doc= this.ieService.abbrExtensionByDoc(doc);
+		}
+		doc=this.cfService.removeRedundency(doc);
+		httpSession.setAttribute("allcriteria", doc);
+//		map.put("initial_event", display_initial_event);
+//		map.put("include", display_inclusion_criteria);
+//		map.put("exclude", display_exclusion_criteria);
+		map.put("json", doc);
+		return map;
+	}
 
 	/**
 	 * download json format criteria
@@ -135,7 +180,7 @@ public class InformationExtractionController {
 
 	}
 	
-	@RequestMapping(value = "/getct", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/getct")
 	@ResponseBody
 	public Map<String, Object> getCrteriafromCT(HttpSession httpSession, HttpServletRequest request, String nctid)
 			throws Exception {
@@ -184,6 +229,7 @@ public class InformationExtractionController {
 		map.put("healthy_volunteers", healthy_volunteers);
 		map.put("inc", inc_exc[0]);
 		map.put("exc", inc_exc[1]);// ----
+		System.out.print(map.get("exc"));
 		return map;
 	}
 }
